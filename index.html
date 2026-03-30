@@ -1,224 +1,262 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { TrendingUp, TrendingDown, ArrowRight, Menu, X, ShieldCheck, Globe, BarChart3 } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapitalInsight | Market Intelligence & Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F7F2; /* Subtle cream/beige paper tone */
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .btn-animation {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-animation:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .news-card img {
+            transition: transform 0.7s scale;
+            filter: grayscale(100%);
+        }
+        .news-card:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        .sticky-header {
+            backdrop-filter: blur(8px);
+            background-color: rgba(249, 247, 242, 0.8);
+        }
+    </style>
+</head>
+<body class="text-[#1A1A1A]">
 
-const FinancialLandingPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+    <header class="sticky top-0 z-50 border-b border-black/10 sticky-header">
+        <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-serif font-black tracking-tighter uppercase italic">
+                Capital<span class="text-[#D48900]">Insight</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 font-semibold text-[11px] uppercase tracking-[0.2em]">
+                <a href="#" class="hover:text-[#D48900] transition-colors">Markets</a>
+                <a href="#" class="hover:text-[#D48900] transition-colors">Strategy</a>
+                <a href="#" class="hover:text-[#D48900] transition-colors">Crypto</a>
+                <a href="/link.html" class="hover:text-[#D48900] transition-colors">Opinion</a>
+            </div>
 
-  // Simulate data loading for skeletons
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const marketData = [
-    { symbol: 'S&P 500', price: '5,241.53', change: '+0.45%', up: true },
-    { symbol: 'BTC/USD', price: '68,432.10', change: '-1.20%', up: false },
-    { symbol: 'Gold', price: '2,315.40', change: '+0.12%', up: true },
-    { symbol: 'EUR/USD', price: '1.0842', change: '-0.05%', up: false },
-  ];
-
-  return (
-    <div className="min-h-screen bg-[#F9F7F2] text-[#1A1A1A] font-sans selection:bg-gold-100">
-      
-      {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-[#F9F7F2]/80 backdrop-blur-md border-b border-black/10">
-        <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="text-2xl font-serif font-black tracking-tighter uppercase italic">
-            Capital<span className="text-[#D48900]">Insight</span>
-          </div>
-          
-          <div className="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
-            <a href="#" className="hover:text-[#D48900] transition-colors">Markets</a>
-            <a href="#" className="hover:text-[#D48900] transition-colors">Strategy</a>
-            <a href="#" className="hover:text-[#D48900] transition-colors">Crypto</a>
-            <a href="/link.html" className="hover:text-[#D48900] transition-colors">Opinion</a>
-          </div>
-
-          <div className="hidden md:block">
-            <button className="bg-[#1A1A1A] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#D48900] transition-all duration-300">
-              SUBSCRIBE
-            </button>
-          </div>
-
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </nav>
-      </header>
-
-      <main>
-        {/* Hero Section */}
-        <section className="max-w-7xl mx-auto px-6 py-16 md:py-24 border-b border-black/10">
-          <div className="max-w-4xl">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-block text-[#D48900] font-bold tracking-[0.2em] text-xs mb-4"
-            >
-              MARKET ANALYSIS • MARCH 2026
-            </motion.span>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-serif font-medium leading-[1.1] mb-8"
-            >
-              The Great Decoupling: Navigating the New Monetary Frontier.
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600 mb-10 max-w-2xl leading-relaxed"
-            >
-              As global central banks pivot, our proprietary algorithms identify the hidden alpha in shifting yield curves and emerging tech equity.
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <button className="bg-[#1A1A1A] text-white px-8 py-4 flex items-center justify-center gap-2 group hover:bg-[#D48900] transition-all">
-                Access Full Report <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="border border-black/20 px-8 py-4 font-bold hover:bg-black/5 transition-all">
-                View Live Data
-              </button>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Real-Time Ticker */}
-        <section className="bg-white border-b border-black/10 overflow-hidden">
-          <div className="max-w-7xl mx-auto flex divide-x divide-black/10">
-            {marketData.map((item, idx) => (
-              <div key={idx} className="px-8 py-4 flex-1 min-w-[200px] flex flex-col justify-center">
-                <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-1">{item.symbol}</span>
-                <div className="flex items-center gap-2 font-mono">
-                  <span className="font-bold">{item.price}</span>
-                  <span className={`text-xs flex items-center ${item.up ? 'text-green-600' : 'text-red-600'}`}>
-                    {item.up ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
-                    {item.change}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* News Grid */}
-        <section className="max-w-7xl mx-auto px-6 py-20">
-          <div className="flex justify-between items-end mb-12">
-            <h2 className="text-3xl font-serif italic">Latest Insights</h2>
-            <a href="#" className="text-sm font-bold border-b-2 border-[#D48900] pb-1 hover:text-[#D48900] transition-colors">SEE ALL NEWS</a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="group cursor-pointer">
-                {isLoading ? (
-                  <div className="animate-pulse">
-                    <div className="bg-gray-200 aspect-video mb-4" />
-                    <div className="h-4 bg-gray-200 w-1/4 mb-2" />
-                    <div className="h-6 bg-gray-200 w-full mb-2" />
-                    <div className="h-6 bg-gray-200 w-2/3" />
-                  </div>
-                ) : (
-                  <motion.div whileHover={{ y: -5 }}>
-                    <div className="overflow-hidden mb-6 bg-gray-200 aspect-[16/10]">
-                      <img 
-                        src={`https://images.unsplash.com/photo-${1550000000000 + i}?auto=format&fit=crop&w=800&q=80`} 
-                        className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700" 
-                        alt="News"
-                      />
-                    </div>
-                    <span className="text-[10px] font-bold text-[#D48900] tracking-widest uppercase">Analysis</span>
-                    <h3 className="text-xl font-serif mt-2 mb-3 leading-snug group-hover:text-[#D48900] transition-colors">
-                      {i === 1 ? "Why Semi-Conductor Stocks are Defying the 10-Year Treasury Yield" : 
-                       i === 2 ? "The Future of Digital Assets in Post-Election Regulation" : 
-                       "Commodity Supercycles: Is Copper the New Oil for 2026?"}
-                    </h3>
-                    <p className="text-sm text-gray-500 line-clamp-2 mb-4">
-                      Deep dive into the macroeconomic factors driving price action across major exchanges this quarter...
-                    </p>
-                    <span className="text-[10px] text-gray-400 uppercase">March 30 • 5 Min Read</span>
-                  </motion.div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Newsletter Section */}
-        <section className="bg-[#1A1A1A] text-white py-20">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-4xl font-serif mb-6 italic text-[#D48900]">The Morning Brief</h2>
-              <p className="text-gray-400 mb-10 text-lg">Join 45,000+ institutional investors who start their day with our curated market intelligence.</p>
-              <form className="flex flex-col sm:flex-row gap-0 border border-white/20">
-                <input 
-                  type="email" 
-                  placeholder="Enter your professional email" 
-                  className="bg-transparent px-6 py-4 flex-grow outline-none focus:bg-white/5 transition-all"
-                />
-                <button className="bg-[#D48900] text-white font-bold px-10 py-4 hover:bg-white hover:text-black transition-all">
-                  SUBSCRIBE
+            <div class="flex items-center gap-6">
+                <button class="hidden md:block text-xs font-bold border-b-2 border-black pb-1 hover:border-[#D48900] transition-all">SIGN IN</button>
+                <button class="bg-[#1A1A1A] text-white px-6 py-2.5 text-xs font-bold hover:bg-[#D48900] transition-all">
+                    SUBSCRIBE
                 </button>
-              </form>
-              <p className="mt-4 text-[10px] text-gray-500 uppercase tracking-widest italic">Zero Spam. Institutional Quality. Daily at 6:00 AM EST.</p>
             </div>
-          </div>
-        </section>
+        </nav>
+    </header>
 
-        {/* Trust Section */}
-        <section className="py-20 border-t border-black/10">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center opacity-40 grayscale">
-              <div className="flex justify-center font-black text-2xl italic tracking-tighter">FINTECH</div>
-              <div className="flex justify-center font-black text-2xl italic tracking-tighter">GLOBAL BANK</div>
-              <div className="flex justify-center font-black text-2xl italic tracking-tighter">MARKET IQ</div>
-              <div className="flex justify-center font-black text-2xl italic tracking-tighter">TRADING.CO</div>
+    <section class="bg-white border-b border-black/10 overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <div class="max-w-7xl mx-auto flex divide-x divide-black/10">
+            <div class="px-8 py-3 flex flex-col min-w-[180px]">
+                <span class="text-[9px] uppercase tracking-widest text-gray-500">S&P 500</span>
+                <div class="flex items-center gap-2 font-mono">
+                    <span class="font-bold text-sm">5,241.53</span>
+                    <span class="text-[10px] text-green-600 font-bold">+0.45%</span>
+                </div>
             </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-black/10 py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="col-span-1 md:col-span-1">
-            <div className="text-xl font-serif font-black tracking-tighter uppercase italic mb-6">
-              Capital<span className="text-[#D48900]">Insight</span>
+            <div class="px-8 py-3 flex flex-col min-w-[180px]">
+                <span class="text-[9px] uppercase tracking-widest text-gray-500">BTC / USD</span>
+                <div class="flex items-center gap-2 font-mono">
+                    <span class="font-bold text-sm">68,432.10</span>
+                    <span class="text-[10px] text-red-600 font-bold">-1.20%</span>
+                </div>
             </div>
-            <p className="text-xs text-gray-400 leading-relaxed uppercase tracking-tighter">
-              © 2026 Capital Insight Media Group. All rights reserved. Market data provided by Morning Star & CoinGecko.
-            </p>
-          </div>
-          <div className="flex flex-col space-y-4 text-sm font-medium">
-            <h4 className="font-bold text-xs uppercase tracking-widest text-gray-400">Navigation</h4>
-            <a href="#" className="hover:text-[#D48900]">Real-time Feed</a>
-            <a href="#" className="hover:text-[#D48900]">Institutional Login</a>
-            <a href="#" className="hover:text-[#D48900]">API Access</a>
-          </div>
-          <div className="flex flex-col space-y-4 text-sm font-medium">
-            <h4 className="font-bold text-xs uppercase tracking-widest text-gray-400">Support</h4>
-            <a href="#" className="hover:text-[#D48900]">Contact Desk</a>
-            <a href="#" className="hover:text-[#D48900]">Help Center</a>
-            <a href="#" className="hover:text-[#D48900]">Privacy Policy</a>
-          </div>
-          <div className="flex flex-col space-y-4 text-sm font-medium">
-            <h4 className="font-bold text-xs uppercase tracking-widest text-gray-400">Social</h4>
-            <a href="#" className="hover:text-[#D48900]">X / Twitter</a>
-            <a href="#" className="hover:text-[#D48900]">LinkedIn</a>
-            <a href="#" className="hover:text-[#D48900]">Bloomberg Terminal</a>
-          </div>
+            <div class="px-8 py-3 flex flex-col min-w-[180px]">
+                <span class="text-[9px] uppercase tracking-widest text-gray-500">Gold (oz)</span>
+                <div class="flex items-center gap-2 font-mono">
+                    <span class="font-bold text-sm">2,315.40</span>
+                    <span class="text-[10px] text-green-600 font-bold">+0.12%</span>
+                </div>
+            </div>
+            <div class="px-8 py-3 flex flex-col min-w-[180px]">
+                <span class="text-[9px] uppercase tracking-widest text-gray-500">10Y Treasury</span>
+                <div class="flex items-center gap-2 font-mono">
+                    <span class="font-bold text-sm">4.21%</span>
+                    <span class="text-[10px] text-red-600 font-bold">-0.05%</span>
+                </div>
+            </div>
         </div>
-      </footer>
-    </div>
-  );
-};
+    </section>
 
-export default FinancialLandingPage;
+    <section class="max-w-7xl mx-auto px-6 py-16 md:py-28 border-b border-black/10">
+        <div class="max-w-4xl">
+            <span class="inline-block text-[#D48900] font-bold tracking-[0.3em] text-[10px] mb-6 uppercase">Exclusive Intelligence</span>
+            <h1 class="text-5xl md:text-8xl font-serif font-medium leading-[1.05] mb-10 tracking-tight">
+                The Great Decoupling: Navigating the New Monetary Frontier.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl leading-relaxed font-light">
+                As global central banks pivot, our proprietary data identifies the hidden alpha in shifting yield curves.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <button class="bg-[#1A1A1A] text-white px-10 py-5 flex items-center justify-center gap-3 group btn-animation font-bold text-sm tracking-widest">
+                    READ ANALYSIS <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+                <button class="border border-black/20 px-10 py-5 font-bold text-sm tracking-widest hover:bg-black/5 transition-all">
+                    VIEW TERMINAL
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="flex justify-between items-end mb-16">
+            <h2 class="text-4xl font-serif italic">The Briefing</h2>
+            <a href="#" class="text-[11px] font-bold tracking-widest border-b-2 border-[#D48900] pb-1 hover:opacity-70 transition-all">EXPLORE ALL</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div class="group cursor-pointer news-card">
+                <div class="overflow-hidden mb-6 aspect-[16/10] bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1611974717482-58d04f3d9721?auto=format&fit=crop&w=800&q=80" alt="Chart" class="w-full h-full object-cover">
+                </div>
+                <span class="text-[10px] font-bold text-[#D48900] tracking-[0.2em] uppercase">Policy Analysis</span>
+                <h3 class="text-2xl font-serif mt-3 mb-4 leading-snug group-hover:text-[#D48900] transition-colors">
+                    Why Semi-Conductor Stocks are Defying the 10-Year Treasury Yield.
+                </h3>
+                <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                    Analyzing the resilience of high-growth tech as fiscal policies tighten across the Eurozone.
+                </p>
+                <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold tracking-widest uppercase">
+                    <span>Mar 30</span>
+                    <span>•</span>
+                    <span>8 min read</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer news-card">
+                <div class="overflow-hidden mb-6 aspect-[16/10] bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80" alt="Crypto" class="w-full h-full object-cover">
+                </div>
+                <span class="text-[10px] font-bold text-[#D48900] tracking-[0.2em] uppercase">Digital Assets</span>
+                <h3 class="text-2xl font-serif mt-3 mb-4 leading-snug group-hover:text-[#D48900] transition-colors">
+                    Institutional Adoption: The BTC ETF Inflow is Just the Beginning.
+                </h3>
+                <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                    Wealth managers are rebalancing portfolios toward digital scarcity as inflation fears return.
+                </p>
+                <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold tracking-widest uppercase">
+                    <span>Mar 29</span>
+                    <span>•</span>
+                    <span>12 min read</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer news-card">
+                <div class="overflow-hidden mb-6 aspect-[16/10] bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="Currencies" class="w-full h-full object-cover">
+                </div>
+                <span class="text-[10px] font-bold text-[#D48900] tracking-[0.2em] uppercase">Currencies</span>
+                <h3 class="text-2xl font-serif mt-3 mb-4 leading-snug group-hover:text-[#D48900] transition-colors">
+                    Yen Stabilization: BoJ Prepares for First Rate Hike in Decades.
+                </h3>
+                <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                    The carry trade is unwinding. Here is what it means for global liquidity in Q3.
+                </p>
+                <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold tracking-widest uppercase">
+                    <span>Mar 28</span>
+                    <span>•</span>
+                    <span>6 min read</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-y border-black/10 bg-white/50">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div class="text-center md:text-left">
+                <div class="text-4xl font-serif font-bold mb-2">$4.2B+</div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Assets Analyzed</div>
+            </div>
+            <div class="text-center md:text-left">
+                <div class="text-4xl font-serif font-bold mb-2">98.4%</div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Data Accuracy</div>
+            </div>
+            <div class="text-center md:text-left">
+                <div class="text-4xl font-serif font-bold mb-2">120k</div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Active Traders</div>
+            </div>
+            <div class="text-center md:text-left">
+                <div class="text-4xl font-serif font-bold mb-2">24/7</div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Market Coverage</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[#1A1A1A] text-white py-24">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-5xl font-serif mb-8 italic text-[#D48900]">The Morning Brief</h2>
+                <p class="text-gray-400 mb-12 text-lg font-light leading-relaxed">
+                    Join 45,000+ institutional investors who start their day with our curated market intelligence. No noise, just signal.
+                </p>
+                <form class="flex flex-col sm:flex-row gap-0 group">
+                    <input 
+                        type="email" 
+                        placeholder="professional@email.com" 
+                        class="bg-transparent border border-white/20 px-6 py-5 flex-grow outline-none focus:border-[#D48900] transition-all text-white"
+                    />
+                    <button class="bg-[#D48900] text-white font-bold px-12 py-5 hover:bg-white hover:text-black transition-all text-xs tracking-[0.2em]">
+                        JOIN NOW
+                    </button>
+                </form>
+                <p class="mt-8 text-[10px] text-gray-600 uppercase tracking-widest italic">Institutional Grade. Dispatched Daily at 06:00 EST.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-black/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-serif font-black tracking-tighter uppercase italic mb-8">
+                    Capital<span class="text-[#D48900]">Insight</span>
+                </div>
+                <p class="text-[10px] text-gray-400 leading-relaxed uppercase tracking-widest">
+                    © 2026 Capital Insight Media Group. <br>Data provided without warranty for informational purposes only.
+                </p>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-2">Intelligence</h4>
+                <a href="#" class="text-sm hover:text-[#D48900] transition-colors">Market Terminal</a>
+                <a href="#" class="text-sm hover:text-[#D48900] transition-colors">Sentiment Analysis</a>
+                <a href="#" class="text-sm hover:text-[#D48900] transition-colors">Yield Curves</a>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-2">Company</h4>
+                <a href="#" class="text-sm hover:text-[#D48900] transition-colors">Editorial Board</a>
+                <a href="#" class="text-sm hover:text-[#D48900] transition-colors">Methodology</a>
+                <a href="#" class="text-sm hover:text-[#D48900] transition-colors">Privacy</a>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-2">Connect</h4>
+                <div class="flex gap-4">
+                    <a href="https://game.net.ua" class="p-2 border border-black/10 hover:bg-black hover:text-white transition-all"><i data-lucide="twitter" class="w-4 h-4">бесплатные игры онлайн</i></a>
+                    <a href="https://finacia.net" class="p-2 border border-black/10 hover:bg-black hover:text-white transition-all"><i data-lucide="linkedin" class="w-4 h-4">finances калькулятор онлайн</i></a>
+                    <a href="https://versii.net" class="p-2 border border-black/10 hover:bg-black hover:text-white transition-all"><i data-lucide="globe" class="w-4 h-4">Версии гарячие новости мира</i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
